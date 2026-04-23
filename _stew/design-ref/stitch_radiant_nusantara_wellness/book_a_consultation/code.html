@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600&amp;family=Noto+Serif:ital,wght@0,400;0,700;1,400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-background": "#1b1c19",
+                        "background": "#fbf9f4",
+                        "inverse-on-surface": "#f2f1ec",
+                        "surface-tint": "#506352",
+                        "surface-dim": "#dbdad5",
+                        "surface-container": "#f0eee9",
+                        "primary-fixed": "#d2e8d3",
+                        "on-error": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "surface-container-low": "#f5f3ee",
+                        "primary": "#4d6150",
+                        "on-surface-variant": "#434843",
+                        "error-container": "#ffdad6",
+                        "tertiary": "#8c4a2f",
+                        "primary-fixed-dim": "#b7ccb7",
+                        "on-surface": "#1b1c19",
+                        "error": "#ba1a1a",
+                        "secondary-container": "#f0e0cc",
+                        "surface-container-high": "#eae8e3",
+                        "inverse-primary": "#b7ccb7",
+                        "on-primary-fixed-variant": "#394b3b",
+                        "inverse-surface": "#30312e",
+                        "on-secondary-container": "#6e6353",
+                        "on-tertiary-container": "#fffbff",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-fixed-dim": "#d3c4b1",
+                        "surface-variant": "#e4e2dd",
+                        "on-secondary-fixed": "#221a0e",
+                        "surface-bright": "#fbf9f4",
+                        "primary-container": "#667a68",
+                        "outline-variant": "#c3c8c0",
+                        "on-primary-fixed": "#0e1f12",
+                        "on-primary-container": "#f6fff4",
+                        "on-secondary": "#ffffff",
+                        "tertiary-fixed-dim": "#ffb599",
+                        "on-tertiary-fixed-variant": "#71361c",
+                        "outline": "#737872",
+                        "surface-container-highest": "#e4e2dd",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-fixed": "#ffdbce",
+                        "on-tertiary-fixed": "#370e00",
+                        "surface": "#fbf9f4",
+                        "on-secondary-fixed-variant": "#4f4537",
+                        "secondary-fixed": "#f0e0cc",
+                        "secondary": "#675d4d",
+                        "tertiary-container": "#a96245",
+                        "on-error-container": "#93000a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-max": "1280px",
+                        "stack-sm": "16px",
+                        "gutter": "24px",
+                        "margin-mobile": "20px",
+                        "unit": "8px",
+                        "stack-md": "32px",
+                        "stack-lg": "64px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Manrope"],
+                        "h2": ["Noto Serif"],
+                        "h3": ["Noto Serif"],
+                        "h1": ["Noto Serif"],
+                        "label-caps": ["Manrope"],
+                        "body-lg": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", {"lineHeight": "1.6", "letterSpacing": "0", "fontWeight": "400"}],
+                        "h2": ["36px", {"lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "400"}],
+                        "h3": ["28px", {"lineHeight": "1.4", "letterSpacing": "0", "fontWeight": "400"}],
+                        "h1": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "400"}],
+                        "label-caps": ["12px", {"lineHeight": "1.0", "letterSpacing": "0.1em", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "letterSpacing": "0.01em", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .organic-glow {
+            box-shadow: 0 20px 40px -15px rgba(77, 97, 80, 0.08);
+        }
+        .text-balance {
+            text-wrap: balance;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md antialiased">
+<!-- TopAppBar -->
+<header class="sticky top-0 w-full z-50 bg-stone-50/90 backdrop-blur-md border-b border-emerald-900/5 shadow-xl shadow-emerald-900/5">
+<div class="flex justify-between items-center px-8 py-6 max-w-7xl mx-auto">
+<div class="text-2xl font-serif tracking-tight text-emerald-900">Serene Path</div>
+<nav class="hidden md:flex items-center gap-stack-md">
+<a class="text-stone-600 hover:text-emerald-700 transition-colors font-body-md" href="#">Home</a>
+<a class="text-stone-600 hover:text-emerald-700 transition-colors font-body-md" href="#">Services</a>
+<a class="text-stone-600 hover:text-emerald-700 transition-colors font-body-md" href="#">Programs</a>
+<a class="text-stone-600 hover:text-emerald-700 transition-colors font-body-md" href="#">About</a>
+<a class="text-emerald-800 border-b-2 border-emerald-800 pb-1 font-medium font-body-md" href="#">Contact</a>
+</nav>
+<button class="bg-primary text-on-primary px-8 py-4 rounded-lg font-body-md hover:bg-primary-container transition-all duration-300 ease-in-out">
+                Book Now
+            </button>
+</div>
+</header>
+<main class="relative">
+<!-- Hero Section -->
+<section class="relative h-[409px] min-h-[400px] flex items-center justify-center overflow-hidden">
+<img alt="Zen background" class="absolute inset-0 w-full h-full object-cover" data-alt="Soft focused detail of smooth river stones and a single green leaf on a light parchment surface with gentle natural morning light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBCbkDniZhm_sAPNECXmnHU3LaeoaCZBCtHE8mrtN5JtxyQwX0eICgMfgHpPoRScNqlKS2KF5E0T7N-cZ_MD891F91EfoZcOFXm2rdY8hxhLNsrjWFHzLB5bIxheXK1tUWUddyqWPU3Xuqm_XBBQtfUHSN06FCY3UW_MF1iWfQm9V7eaPVwUTxjG1G5MvvK_pQohbVLhBQ4iYj7YX7jEt_7TTOMowhJL6ULCQDqJYBMU5_Ar-J4MNU8s1Lfj6KAIn2gmWrdQ84VvcFw"/>
+<div class="absolute inset-0 bg-background/60 backdrop-blur-[2px]"></div>
+<div class="relative z-10 text-center px-gutter max-w-3xl">
+<h1 class="font-h1 text-h1 text-on-surface mb-stack-sm text-balance">Begin Your Journey to Balance</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant italic">Professional guidance tailored to your personal path of serenity.</p>
+</div>
+</section>
+<!-- Main Content Area -->
+<section class="max-w-7xl mx-auto px-8 py-stack-lg">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-stack-lg items-start">
+<!-- Contact Information (Asymmetric Layout) -->
+<div class="lg:col-span-4 space-y-stack-lg">
+<div class="p-stack-md bg-surface-container-low rounded-xl border border-primary/5 organic-glow">
+<span class="font-label-caps text-label-caps text-tertiary mb-stack-sm block">GET IN TOUCH</span>
+<h2 class="font-h2 text-h2 mb-stack-md">Connect with us</h2>
+<div class="space-y-stack-md">
+<div class="flex items-start gap-4">
+<span class="material-symbols-outlined text-primary" data-icon="location_on">location_on</span>
+<div>
+<p class="font-body-md font-semibold">Our Studio</p>
+<p class="font-body-md text-on-surface-variant">128 Serenity Lane, <br/>Ojai, California 93023</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<span class="material-symbols-outlined text-primary" data-icon="mail">mail</span>
+<div>
+<p class="font-body-md font-semibold">Inquiries</p>
+<p class="font-body-md text-on-surface-variant">hello@serenepath.com</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<span class="material-symbols-outlined text-primary" data-icon="schedule">schedule</span>
+<div>
+<p class="font-body-md font-semibold">Hours</p>
+<p class="font-body-md text-on-surface-variant">Mon — Fri: 8:00am - 6:00pm<br/>Sat: 9:00am - 2:00pm</p>
+</div>
+</div>
+</div>
+</div>
+<div class="relative rounded-xl overflow-hidden h-[300px] border border-primary/5 organic-glow">
+<img alt="Studio interior" class="w-full h-full object-cover" data-alt="Minimalist yoga studio interior with light wood floors large windows and soft linen curtains in warm afternoon sunlight" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCh5S9T3DCfr1VBzLzEMPkqf_18xrZGaHxUxz8WRHtSm6xQcq4L8Z29Heu5kPgwrmmd4bLCm45ONFSo2f9BBo9aUidmcvWuvEkKRl4Yyxt-qinHlSw2vmis5zfmDxhvbL3lfjbHUdir1nNK-tm_Ea6qmEEyjLbUlr2DzAWcmIUyQluxqbzyawtPoMxLUXL4uH6z9M5MCVtxLRTXv-aLwiVDVogM1ADG2Is6vkkaFRYJ8CK9aHLyl5F8nrT9cq1CUQ0w37R0kTGsOKuW"/>
+<div class="absolute bottom-0 left-0 right-0 p-stack-md bg-gradient-to-t from-background/90 to-transparent">
+<p class="font-label-caps text-label-caps text-primary">VISIT OUR SANCTUARY</p>
+</div>
+</div>
+</div>
+<!-- Booking Form -->
+<div class="lg:col-span-8 bg-surface-container rounded-xl p-stack-lg border border-primary/5 organic-glow">
+<form action="#" class="space-y-stack-md" method="POST">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+<div class="space-y-2">
+<label class="font-label-caps text-label-caps text-on-surface-variant" for="first-name">FIRST NAME</label>
+<input class="w-full bg-surface-bright border-b-2 border-outline-variant focus:border-tertiary focus:ring-0 transition-colors p-3 font-body-md" id="first-name" type="text"/>
+</div>
+<div class="space-y-2">
+<label class="font-label-caps text-label-caps text-on-surface-variant" for="last-name">LAST NAME</label>
+<input class="w-full bg-surface-bright border-b-2 border-outline-variant focus:border-tertiary focus:ring-0 transition-colors p-3 font-body-md" id="last-name" type="text"/>
+</div>
+</div>
+<div class="space-y-2">
+<label class="font-label-caps text-label-caps text-on-surface-variant" for="email">EMAIL ADDRESS</label>
+<input class="w-full bg-surface-bright border-b-2 border-outline-variant focus:border-tertiary focus:ring-0 transition-colors p-3 font-body-md" id="email" type="email"/>
+</div>
+<div class="space-y-2">
+<label class="font-label-caps text-label-caps text-on-surface-variant mb-4 block">INQUIRY TYPE</label>
+<div class="flex flex-wrap gap-3">
+<label class="cursor-pointer group">
+<input class="hidden peer" name="type" type="radio"/>
+<span class="px-6 py-2 rounded-full border border-primary/20 text-body-md bg-background peer-checked:bg-primary-container peer-checked:text-on-primary-container transition-all">Discovery Call</span>
+</label>
+<label class="cursor-pointer group">
+<input class="hidden peer" name="type" type="radio"/>
+<span class="px-6 py-2 rounded-full border border-primary/20 text-body-md bg-background peer-checked:bg-primary-container peer-checked:text-on-primary-container transition-all">Yoga Training</span>
+</label>
+<label class="cursor-pointer group">
+<input class="hidden peer" name="type" type="radio"/>
+<span class="px-6 py-2 rounded-full border border-primary/20 text-body-md bg-background peer-checked:bg-primary-container peer-checked:text-on-primary-container transition-all">Wellness Coaching</span>
+</label>
+<label class="cursor-pointer group">
+<input class="hidden peer" name="type" type="radio"/>
+<span class="px-6 py-2 rounded-full border border-primary/20 text-body-md bg-background peer-checked:bg-primary-container peer-checked:text-on-primary-container transition-all">General Inquiry</span>
+</label>
+</div>
+</div>
+<div class="space-y-2">
+<label class="font-label-caps text-label-caps text-on-surface-variant" for="message">YOUR MESSAGE</label>
+<textarea class="w-full bg-surface-bright border-b-2 border-outline-variant focus:border-tertiary focus:ring-0 transition-colors p-3 font-body-md" id="message" rows="5"></textarea>
+</div>
+<div class="pt-stack-md">
+<button class="w-full md:w-auto bg-primary text-on-primary px-12 py-5 rounded-lg font-body-lg hover:bg-primary-container transition-all duration-300 flex items-center justify-center gap-3 group" type="submit">
+<span>Send Message</span>
+<span class="material-symbols-outlined text-[20px] group-hover:translate-x-1 transition-transform" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</form>
+</div>
+</div>
+</section>
+<!-- Bottom Feature -->
+<section class="bg-secondary-container/30 py-stack-lg mt-stack-lg">
+<div class="max-w-7xl mx-auto px-8 grid grid-cols-1 md:grid-cols-3 gap-stack-md text-center">
+<div class="p-stack-md">
+<span class="material-symbols-outlined text-tertiary text-4xl mb-4" data-icon="psychology">psychology</span>
+<h3 class="font-h3 text-h3 mb-2">Expert Guidance</h3>
+<p class="font-body-md text-on-surface-variant">Over 15 years of international expertise in holistic wellness and personal growth.</p>
+</div>
+<div class="p-stack-md">
+<span class="material-symbols-outlined text-tertiary text-4xl mb-4" data-icon="self_improvement">self_improvement</span>
+<h3 class="font-h3 text-h3 mb-2">Tailored Approach</h3>
+<p class="font-body-md text-on-surface-variant">No two journeys are the same. We craft programs that align with your unique rhythm.</p>
+</div>
+<div class="p-stack-md">
+<span class="material-symbols-outlined text-tertiary text-4xl mb-4" data-icon="verified">verified</span>
+<h3 class="font-h3 text-h3 mb-2">Tranquil Space</h3>
+<p class="font-body-md text-on-surface-variant">A sanctuary designed to help you decompress and find immediate clarity.</p>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full border-t border-emerald-900/5 bg-stone-100 pt-12 pb-8 mt-24">
+<div class="flex flex-col md:flex-row justify-between items-center px-8 max-w-7xl mx-auto gap-4">
+<div class="text-lg font-serif italic text-emerald-900">Serene Path</div>
+<div class="flex gap-stack-md">
+<a class="font-serif text-stone-600 text-sm hover:text-emerald-700 transition-colors" href="#">Privacy Policy</a>
+<a class="font-serif text-stone-600 text-sm hover:text-emerald-700 transition-colors" href="#">Terms of Service</a>
+<a class="font-serif text-stone-600 text-sm hover:text-emerald-700 transition-colors" href="#">Instagram</a>
+<a class="font-serif text-stone-600 text-sm hover:text-emerald-700 transition-colors" href="#">LinkedIn</a>
+</div>
+<div class="font-serif text-stone-600 text-sm">
+                © 2024 Serene Path Wellness. All rights reserved.
+            </div>
+</div>
+</footer>
+</body></html>
