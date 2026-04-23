@@ -1,0 +1,19 @@
+{
+  "name": "@dessy/dessyui",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./about-page": "./src/pages/AboutPage.astro",
+    "./consultation-page": "./src/pages/ConsultationPage.astro",
+    "./footer": "./src/components/WellnessFooter.astro",
+    "./home-page": "./src/pages/HomePage.astro",
+    "./services-page": "./src/pages/ServicesPage.astro",
+    "./site-header": "./src/components/WellnessHeader.astro",
+    "./theme.css": "./src/theme.css"
+  },
+  "dependencies": {
+    "@dessy/daisyui": "workspace:*"
+  }
+}
+

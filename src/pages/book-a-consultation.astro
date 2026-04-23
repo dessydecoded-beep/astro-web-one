@@ -1,0 +1,16 @@
+---
+import ConsultationPage from '@dessy/dessyui/consultation-page';
+import WellnessFooter from '@dessy/dessyui/footer';
+import WellnessHeader from '@dessy/dessyui/site-header';
+import SiteShell from '../layouts/SiteShell.astro';
+---
+
+<SiteShell
+  title="Book a Consultation | Serene Path Wellness"
+  description="Begin your personalized wellness journey with Serene Path through a consultation tailored to your goals."
+>
+  <WellnessHeader active="/book-a-consultation" />
+  <ConsultationPage />
+  <WellnessFooter />
+</SiteShell>
+

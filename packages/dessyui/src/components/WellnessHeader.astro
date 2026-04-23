@@ -1,0 +1,13 @@
+---
+import Navbar from '@dessy/daisyui/navbar';
+import { navLinks } from '../data';
+
+interface Props {
+  active?: string;
+}
+
+const { active = '/' } = Astro.props;
+---
+
+<Navbar active={active} brand="Serene Path" ctaHref="/book-a-consultation" ctaLabel="Book Now" links={navLinks} />
+

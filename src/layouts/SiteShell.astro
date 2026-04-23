@@ -1,0 +1,29 @@
+---
+import '../assets/app.css';
+
+interface Props {
+  description: string;
+  title: string;
+}
+
+const { description, title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en" data-theme="serene">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&family=Noto+Serif:ital,wght@0,400;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <title>{title}</title>
+  </head>
+  <body class="bg-base-100 text-base-content antialiased">
+    <slot />
+  </body>
+</html>

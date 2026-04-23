@@ -1,0 +1,18 @@
+{
+  "name": "@dessy/daisyui",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./badge": "./src/Badge.astro",
+    "./button": "./src/Button.astro",
+    "./card": "./src/Card.astro",
+    "./container": "./src/Container.astro",
+    "./form-field": "./src/FormField.astro",
+    "./navbar": "./src/Navbar.astro",
+    "./section": "./src/Section.astro"
+  },
+  "devDependencies": {
+    "daisyui": "^5.5.19"
+  }
+}

@@ -1,0 +1,63 @@
+---
+import Button from '@dessy/daisyui/button';
+import Badge from '@dessy/daisyui/badge';
+import MatFrame from './MatFrame.astro';
+
+interface Stat {
+  label: string;
+  value: string;
+}
+
+interface Props {
+  eyebrow: string;
+  image: string;
+  imageAlt: string;
+  reverse?: boolean;
+  stats?: readonly Stat[];
+  tags?: readonly string[];
+  text: string;
+  title: string;
+  tone?: 'primary' | 'secondary' | 'accent';
+}
+
+const {
+  eyebrow,
+  image,
+  imageAlt,
+  reverse = false,
+  stats = [],
+  tags = [],
+  text,
+  title,
+  tone = 'primary',
+} = Astro.props;
+---
+
+<section class="grid items-center gap-8 lg:grid-cols-12">
+  <div class:list={['lg:col-span-7', reverse && 'lg:order-2']}>
+    <MatFrame class="rounded-3xl" imgClass="aspect-[16/10]" src={image} alt={imageAlt} />
+  </div>
+  <div class:list={['px-0 lg:col-span-5 lg:px-8', reverse && 'lg:order-1']}>
+    <Badge tone={tone} class="mb-5">{eyebrow}</Badge>
+    <h2 class="font-serif text-4xl leading-tight tracking-[-0.03em] md:text-5xl">{title}</h2>
+    <p class="mt-5 leading-8 text-base-content/65">{text}</p>
+    {stats.length > 0 && (
+      <div class="mt-7 grid grid-cols-2 gap-4">
+        {stats.map((stat) => (
+          <div class="rounded-2xl border border-primary/10 bg-base-200 p-5 organic-glow">
+            <span class="block font-serif text-3xl text-accent">{stat.value}</span>
+            <span class="text-[0.68rem] font-bold uppercase tracking-[0.16em] text-base-content/55">{stat.label}</span>
+          </div>
+        ))}
+      </div>
+    )}
+    {tags.length > 0 && (
+      <div class="mt-7 flex flex-wrap gap-2">
+        {tags.map((tag) => (
+          <span class="rounded-full border border-primary/10 bg-primary/5 px-4 py-2 text-[0.65rem] font-bold uppercase tracking-[0.14em] text-primary">{tag}</span>
+        ))}
+      </div>
+    )}
+    <Button href="/book-a-consultation" variant={tone === 'primary' ? 'primary' : 'outline'} class="mt-8">View Details</Button>
+  </div>
+</section>

@@ -1,0 +1,20 @@
+---
+interface Props {
+  class?: string;
+  tone?: 'primary' | 'secondary' | 'accent' | 'neutral';
+}
+
+const { class: className = '', tone = 'primary' } = Astro.props;
+
+const tones = {
+  primary: 'badge-primary',
+  secondary: 'badge-secondary',
+  accent: 'badge-accent',
+  neutral: 'badge-neutral',
+};
+---
+
+<span class:list={['badge rounded-full border-none px-4 py-3 text-[0.68rem] font-bold uppercase tracking-[0.16em]', tones[tone], className]}>
+  <slot />
+</span>
+

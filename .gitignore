@@ -1,0 +1,12 @@
+node_modules/
+dist/
+.astro/
+.wrangler/
+.env
+.env.*
+!.env.example
+
+# Local OS/editor noise
+.DS_Store
+.idea/
+.vscode/

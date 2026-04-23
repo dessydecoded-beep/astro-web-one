@@ -1,0 +1,51 @@
+---
+interface Link {
+  href: string;
+  label: string;
+}
+
+interface Props {
+  active?: string;
+  brand?: string;
+  ctaHref?: string;
+  ctaLabel?: string;
+  links?: Link[];
+}
+
+const {
+  active = '/',
+  brand = 'Serene Path',
+  ctaHref = '/book-a-consultation',
+  ctaLabel = 'Book Now',
+  links = [],
+} = Astro.props;
+---
+
+<header class="sticky top-0 z-50 border-b border-primary/10 bg-base-100/90 shadow-[0_16px_48px_-32px_rgba(77,97,80,0.45)] backdrop-blur-xl">
+  <div class="navbar mx-auto max-w-7xl px-5 py-4 sm:px-6 lg:px-8">
+    <div class="navbar-start">
+      <a class="font-serif text-2xl tracking-[-0.03em] text-primary" href="/">{brand}</a>
+    </div>
+    <nav class="navbar-center hidden lg:flex">
+      <ul class="menu menu-horizontal gap-2 px-1">
+        {links.map((link) => (
+          <li>
+            <a
+              class:list={[
+                'rounded-none border-b-2 px-2 pb-1 pt-2 text-sm font-semibold text-base-content/65 hover:bg-transparent hover:text-primary',
+                active === link.href ? 'border-primary text-primary' : 'border-transparent',
+              ]}
+              href={link.href}
+            >
+              {link.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+    <div class="navbar-end">
+      <a class="btn btn-primary rounded-xl px-6 font-semibold" href={ctaHref}>{ctaLabel}</a>
+    </div>
+  </div>
+</header>
+

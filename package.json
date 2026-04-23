@@ -1,0 +1,34 @@
+{
+  "name": "websiteone",
+  "version": "1.0.0",
+  "description": "A fast Astro site deployed to Cloudflare Workers.",
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler types && astro dev",
+    "start": "pnpm dev",
+    "build": "wrangler types && astro check && astro build",
+    "preview": "wrangler types && astro preview",
+    "deploy": "pnpm build && wrangler deploy",
+    "astro": "astro"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@astrojs/cloudflare": "^13.2.0",
+    "@astrojs/preact": "^5.1.2",
+    "@dessy/daisyui": "workspace:*",
+    "@dessy/dessyui": "workspace:*",
+    "astro": "^6.1.9",
+    "preact": "^10.29.1"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.8",
+    "@tailwindcss/vite": "^4.2.4",
+    "@types/node": "^25.6.0",
+    "daisyui": "^5.5.19",
+    "tailwindcss": "^4.2.4",
+    "typescript": "^5.9.3",
+    "wrangler": "^4.84.1"
+  }
+}

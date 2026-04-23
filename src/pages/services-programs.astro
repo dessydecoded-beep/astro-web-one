@@ -1,0 +1,16 @@
+---
+import ServicesPage from '@dessy/dessyui/services-page';
+import WellnessFooter from '@dessy/dessyui/footer';
+import WellnessHeader from '@dessy/dessyui/site-header';
+import SiteShell from '../layouts/SiteShell.astro';
+---
+
+<SiteShell
+  title="Services & Programs | Serene Path Wellness"
+  description="Explore holistic yoga, empowerment coaching, and functional training programs from Serene Path Wellness."
+>
+  <WellnessHeader active="/services-programs" />
+  <ServicesPage />
+  <WellnessFooter />
+</SiteShell>
+

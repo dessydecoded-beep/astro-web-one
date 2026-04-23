@@ -1,0 +1,33 @@
+---
+import Button from '@dessy/daisyui/button';
+import FormField from '@dessy/daisyui/form-field';
+
+const inquiryTypes = ['Discovery Call', 'Yoga Training', 'Wellness Coaching', 'General Inquiry'];
+---
+
+<form class="space-y-7" action="#" method="post">
+  <div class="grid gap-6 md:grid-cols-2">
+    <FormField id="first-name" label="First name" />
+    <FormField id="last-name" label="Last name" />
+  </div>
+  <FormField id="email" label="Email address" type="email" />
+  <div>
+    <p class="mb-4 text-[0.72rem] font-bold uppercase tracking-[0.16em] text-base-content/60">Inquiry type</p>
+    <div class="flex flex-wrap gap-3">
+      {inquiryTypes.map((type, index) => (
+        <label class="cursor-pointer">
+          <input class="peer sr-only" name="inquiry-type" type="radio" checked={index === 0} />
+          <span class="block rounded-full border border-primary/15 bg-base-100 px-5 py-2 text-sm transition-colors peer-checked:bg-primary peer-checked:text-primary-content">
+            {type}
+          </span>
+        </label>
+      ))}
+    </div>
+  </div>
+  <FormField as="textarea" id="message" label="Your message" rows={5} />
+  <Button type="submit" size="lg" class="w-full md:w-auto">
+    Send Message
+    <span class="material-symbols-outlined text-xl">arrow_forward</span>
+  </Button>
+</form>
+

@@ -1,0 +1,16 @@
+---
+interface Props {
+  alt: string;
+  class?: string;
+  imgClass?: string;
+  rotate?: string;
+  src: string;
+}
+
+const { alt, class: className = '', imgClass = '', rotate = '', src } = Astro.props;
+---
+
+<div class:list={['mat-frame organic-glow overflow-hidden rounded-[2rem]', rotate, className]}>
+  <img class:list={['h-full w-full object-cover rounded-2xl', imgClass]} src={src} alt={alt} loading="lazy" />
+</div>
+
