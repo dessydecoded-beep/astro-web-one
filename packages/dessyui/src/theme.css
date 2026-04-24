@@ -1,6 +1,8 @@
 @source "../../daisyui/src";
 @source "./";
 
+@plugin "@tailwindcss/typography";
+
 @plugin "daisyui" {
   themes: false;
 }
@@ -38,4 +40,3 @@
   --depth: 0;
   --noise: 0;
 }
-
