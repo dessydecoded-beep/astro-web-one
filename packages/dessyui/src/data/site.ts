@@ -19,6 +19,7 @@ export const siteConfig = {
   navLinks: [
     { href: '/', label: 'Home' },
     { href: '/services-programs', label: 'Services' },
+    { href: '/blog', label: 'Blog' },
     { href: '/about-your-coach', label: 'About' },
     { href: '/book-a-consultation', label: 'Book' },
   ],

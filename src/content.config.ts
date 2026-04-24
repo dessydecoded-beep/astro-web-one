@@ -159,4 +159,16 @@ const consultation = defineCollection({
   }),
 });
 
-export const collections = { about, consultation, home, services };
+const blog = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/blog' }),
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    pubDate: z.coerce.date(),
+    author: z.string(),
+    category: z.string(),
+    featured: z.boolean().default(false),
+  }),
+});
+
+export const collections = { about, blog, consultation, home, services };

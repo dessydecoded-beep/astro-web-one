@@ -1,0 +1,46 @@
+---
+import { getCollection } from 'astro:content';
+import Card from '@dessy/daisyui/card';
+import Section from '@dessy/daisyui/section';
+import WellnessFooter from '@dessy/dessyui/footer';
+import WellnessHeader from '@dessy/dessyui/site-header';
+import SiteShell from '../../layouts/SiteShell.astro';
+
+const posts = (await getCollection('blog')).sort(
+  (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime(),
+);
+---
+
+<SiteShell title="Blog | Dessy Rinink" description="Sample blog posts for the Dessy Rinink site.">
+  <WellnessHeader active="/blog" />
+  <main>
+    <Section class="text-center">
+      <p class="text-[0.72rem] font-bold uppercase tracking-[0.16em] text-accent">Blog</p>
+      <h1 class="mx-auto mt-4 max-w-4xl font-serif text-5xl tracking-[-0.055em] text-balance md:text-7xl">
+        Notes, reflections, and placeholder posts
+      </h1>
+      <p class="mx-auto mt-6 max-w-3xl text-lg leading-8 text-base-content/65">
+        This sample blog section is powered by Astro Content Collections and currently uses dummy text content for each article.
+      </p>
+    </Section>
+
+    <Section class="bg-base-200">
+      <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+        {posts.map((post) => (
+          <Card class="h-full">
+            <p class="text-[0.68rem] font-bold uppercase tracking-[0.16em] text-accent">
+              {post.data.category} · {post.data.pubDate.toLocaleDateString('en-AU', { day: 'numeric', month: 'short', year: 'numeric' })}
+            </p>
+            <h2 class="mt-4 font-serif text-3xl text-balance">{post.data.title}</h2>
+            <p class="mt-4 leading-7 text-base-content/65">{post.data.description}</p>
+            <p class="mt-6 text-sm text-base-content/55">By {post.data.author}</p>
+            <a class="mt-6 inline-flex text-sm font-semibold text-primary transition-colors hover:text-accent" href={`/blog/${post.id}/`}>
+              Read post
+            </a>
+          </Card>
+        ))}
+      </div>
+    </Section>
+  </main>
+  <WellnessFooter />
+</SiteShell>

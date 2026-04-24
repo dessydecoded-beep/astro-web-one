@@ -1,0 +1,49 @@
+---
+import { getCollection, render } from 'astro:content';
+import Section from '@dessy/daisyui/section';
+import WellnessFooter from '@dessy/dessyui/footer';
+import WellnessHeader from '@dessy/dessyui/site-header';
+import SiteShell from '../../layouts/SiteShell.astro';
+
+export const prerender = true;
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+---
+
+<SiteShell title={`${post.data.title} | Dessy Rinink`} description={post.data.description}>
+  <WellnessHeader active="/blog" />
+  <main>
+    <Section>
+      <div class="mx-auto max-w-3xl">
+        <a class="text-sm font-semibold text-primary transition-colors hover:text-accent" href="/blog">
+          ← Back to blog
+        </a>
+        <p class="mt-8 text-[0.72rem] font-bold uppercase tracking-[0.16em] text-accent">
+          {post.data.category} · {post.data.pubDate.toLocaleDateString('en-AU', { day: 'numeric', month: 'long', year: 'numeric' })}
+        </p>
+        <h1 class="mt-4 font-serif text-5xl tracking-[-0.055em] text-balance md:text-7xl">
+          {post.data.title}
+        </h1>
+        <p class="mt-6 text-lg leading-8 text-base-content/65">{post.data.description}</p>
+        <p class="mt-4 text-sm text-base-content/55">By {post.data.author}</p>
+      </div>
+    </Section>
+
+    <Section class="bg-base-200">
+      <article class="prose prose-lg mx-auto max-w-3xl prose-headings:font-serif prose-headings:text-base-content prose-p:text-base-content/75">
+        <Content />
+      </article>
+    </Section>
+  </main>
+  <WellnessFooter />
+</SiteShell>
