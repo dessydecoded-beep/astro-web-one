@@ -8,6 +8,7 @@
     "./consultation-page": "./src/pages/ConsultationPage.astro",
     "./footer": "./src/components/WellnessFooter.astro",
     "./home-page": "./src/pages/HomePage.astro",
+    "./service-program-page": "./src/pages/ServiceProgramPage.astro",
     "./services-page": "./src/pages/ServicesPage.astro",
     "./site-header": "./src/components/WellnessHeader.astro",
     "./theme.css": "./src/theme.css"
@@ -16,4 +17,3 @@
     "@dessy/daisyui": "workspace:*"
   }
 }
-

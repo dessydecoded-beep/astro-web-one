@@ -1,5 +1,5 @@
 ---
-import { getEntry, render } from 'astro:content';
+import { getCollection, getEntry, render } from 'astro:content';
 import ServicesPage from '@dessy/dessyui/services-page';
 import WellnessFooter from '@dessy/dessyui/footer';
 import WellnessHeader from '@dessy/dessyui/site-header';
@@ -12,11 +12,14 @@ if (!entry) {
 }
 
 const { Content } = await render(entry);
+const servicePrograms = (await getCollection('servicePrograms')).sort(
+  (a, b) => a.data.order - b.data.order,
+);
 ---
 
 <SiteShell title={entry.data.seoTitle} description={entry.data.seoDescription}>
   <WellnessHeader active="/services-programs" />
-  <ServicesPage content={entry.data}>
+  <ServicesPage content={entry.data} servicePrograms={servicePrograms}>
     <Content />
   </ServicesPage>
   <WellnessFooter />

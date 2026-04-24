@@ -10,6 +10,7 @@ interface Stat {
 
 interface Props {
   eyebrow: string;
+  href?: string;
   image: string;
   imageAlt: string;
   reverse?: boolean;
@@ -22,6 +23,7 @@ interface Props {
 
 const {
   eyebrow,
+  href = '/book-a-consultation',
   image,
   imageAlt,
   reverse = false,
@@ -58,6 +60,6 @@ const {
         ))}
       </div>
     )}
-    <Button href="/book-a-consultation" variant={tone === 'primary' ? 'primary' : 'outline'} class="mt-8">View Details</Button>
+    <Button href={href} variant={tone === 'primary' ? 'primary' : 'outline'} class="mt-8">View Details</Button>
   </div>
 </section>

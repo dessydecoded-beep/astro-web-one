@@ -19,6 +19,15 @@ const serviceFeatureSchema = z.object({
   tone: z.enum(['primary', 'secondary', 'accent']).optional(),
 });
 
+const servicePrograms = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/service-programs' }),
+  schema: serviceFeatureSchema.extend({
+    order: z.number(),
+    seoTitle: z.string(),
+    seoDescription: z.string(),
+  }),
+});
+
 const home = defineCollection({
   loader: glob({ pattern: 'index.md', base: './src/content/home' }),
   schema: z.object({
@@ -75,7 +84,6 @@ const services = defineCollection({
       heading: z.string(),
       text: z.string(),
     }),
-    services: z.array(serviceFeatureSchema),
     signature: z.object({
       heading: z.string(),
       text: z.string(),
@@ -171,4 +179,4 @@ const blog = defineCollection({
   }),
 });
 
-export const collections = { about, blog, consultation, home, services };
+export const collections = { about, blog, consultation, home, servicePrograms, services };

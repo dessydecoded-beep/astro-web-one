@@ -7,13 +7,15 @@ import { images } from '../data';
 
 interface Props {
   content: CollectionEntry<'services'>['data'];
+  servicePrograms: CollectionEntry<'servicePrograms'>[];
 }
 
-const { content } = Astro.props;
+const { content, servicePrograms } = Astro.props;
 
-const services = content.services.map((service) => ({
-  ...service,
-  image: images[service.image as keyof typeof images],
+const services = servicePrograms.map((serviceProgram) => ({
+  ...serviceProgram.data,
+  href: `/services-programs/${serviceProgram.id}/`,
+  image: images[serviceProgram.data.image as keyof typeof images],
 }));
 ---
 

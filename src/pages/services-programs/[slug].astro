@@ -1,0 +1,29 @@
+---
+import { getCollection, render } from 'astro:content';
+import ServiceProgramPage from '@dessy/dessyui/service-program-page';
+import WellnessFooter from '@dessy/dessyui/footer';
+import WellnessHeader from '@dessy/dessyui/site-header';
+import SiteShell from '../../layouts/SiteShell.astro';
+
+export const prerender = true;
+
+export async function getStaticPaths() {
+  const servicePrograms = await getCollection('servicePrograms');
+
+  return servicePrograms.map((serviceProgram) => ({
+    params: { slug: serviceProgram.id },
+    props: { serviceProgram },
+  }));
+}
+
+const { serviceProgram } = Astro.props;
+const { Content } = await render(serviceProgram);
+---
+
+<SiteShell title={serviceProgram.data.seoTitle} description={serviceProgram.data.seoDescription}>
+  <WellnessHeader active="/services-programs" />
+  <ServiceProgramPage serviceProgram={serviceProgram}>
+    <Content />
+  </ServiceProgramPage>
+  <WellnessFooter />
+</SiteShell>

@@ -1,0 +1,76 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import Badge from '@dessy/daisyui/badge';
+import Button from '@dessy/daisyui/button';
+import Section from '@dessy/daisyui/section';
+import MatFrame from '../components/MatFrame.astro';
+import { images } from '../data';
+
+interface Props {
+  serviceProgram: CollectionEntry<'servicePrograms'>;
+}
+
+const { serviceProgram } = Astro.props;
+const { data } = serviceProgram;
+const image = images[data.image as keyof typeof images];
+
+if (!image) {
+  throw new Error(`Missing service program image: ${data.image}`);
+}
+---
+
+<main>
+  <Section>
+    <div class="grid items-center gap-10 lg:grid-cols-12">
+      <div class="lg:col-span-6">
+        <a class="text-sm font-semibold text-primary transition-colors hover:text-accent" href="/services-programs">
+          &larr; Back to services
+        </a>
+        <Badge tone={data.tone ?? 'primary'} class="mt-8">{data.eyebrow}</Badge>
+        <h1 class="mt-5 font-serif text-5xl leading-tight tracking-[-0.055em] text-balance md:text-7xl">
+          {data.title}
+        </h1>
+        <p class="mt-6 text-lg leading-8 text-base-content/65">{data.text}</p>
+        <div class="mt-8 flex flex-wrap gap-3">
+          {(data.tags ?? []).map((tag) => (
+            <span class="rounded-full border border-primary/10 bg-primary/5 px-4 py-2 text-[0.65rem] font-bold uppercase tracking-[0.14em] text-primary">{tag}</span>
+          ))}
+        </div>
+      </div>
+
+      <div class="lg:col-span-6">
+        <MatFrame class="rounded-3xl" imgClass="aspect-[4/3]" src={image} alt={data.imageAlt} />
+      </div>
+    </div>
+  </Section>
+
+  <Section class="bg-base-200">
+    <div class="grid gap-10 lg:grid-cols-12">
+      <article class="prose prose-lg max-w-none prose-headings:font-serif prose-headings:text-base-content prose-p:text-base-content/75 lg:col-span-8">
+        <slot />
+      </article>
+
+      <aside class="lg:col-span-4">
+        <div class="sticky top-24 rounded-[2rem] border border-primary/10 bg-base-100 p-7 organic-glow">
+          {data.stats && data.stats.length > 0 && (
+            <div class="grid grid-cols-2 gap-4">
+              {data.stats.map((stat) => (
+                <div class="rounded-2xl border border-primary/10 bg-base-200 p-5">
+                  <span class="block font-serif text-3xl text-accent">{stat.value}</span>
+                  <span class="text-[0.68rem] font-bold uppercase tracking-[0.16em] text-base-content/55">{stat.label}</span>
+                </div>
+              ))}
+            </div>
+          )}
+          <h2 class="mt-7 font-serif text-3xl tracking-[-0.03em]">Ready to explore this work?</h2>
+          <p class="mt-4 leading-7 text-base-content/65">
+            Book a session with Dessy to discuss what support fits your current season.
+          </p>
+          <Button href="/book-a-consultation" variant={data.tone === 'primary' || !data.tone ? 'primary' : 'outline'} class="mt-7 w-full">
+            Book a Session
+          </Button>
+        </div>
+      </aside>
+    </div>
+  </Section>
+</main>
