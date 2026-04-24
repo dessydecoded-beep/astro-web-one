@@ -2,7 +2,7 @@
 title: "The Power of a Quiet Reset"
 description: "Sample content card description for a quieter reflective article."
 pubDate: 2026-04-09
-author: "Dessy Rinink"
+author: "Dessy Rinika"
 category: "Reflection"
 featured: false
 ---

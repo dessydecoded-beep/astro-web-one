@@ -173,11 +173,11 @@ export const aboutPageContent = {
     title: 'Qualifications & Approach',
   },
   hero: {
-    body: 'Dessy Rinink is an NLP-qualified life coach, astrologer, and transformational practitioner who helps people understand themselves more deeply and move through life with greater clarity.',
+    body: 'Dessy Rinika is an NLP-qualified life coach, astrologer, and transformational practitioner who helps people understand themselves more deeply and move through life with greater clarity.',
     detailLabel: 'Coaching & astrology practice',
     detailValue: '1:1 transformational work',
     eyebrow: 'About Dessy',
-    imageAlt: 'Portrait representing Dessy Rinink',
+    imageAlt: 'Portrait representing Dessy Rinika',
     title: 'Insightful guidance for real life change.',
   },
   philosophy: {

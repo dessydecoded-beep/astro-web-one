@@ -2,7 +2,7 @@
 title: "Building Self-Trust Slowly"
 description: "Another sample post entry to populate the blog section."
 pubDate: 2026-04-12
-author: "Dessy Rinink"
+author: "Dessy Rinika"
 category: "Personal Growth"
 featured: false
 ---

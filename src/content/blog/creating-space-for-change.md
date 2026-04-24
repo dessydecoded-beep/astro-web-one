@@ -2,7 +2,7 @@
 title: "Creating Space for Change"
 description: "Sample closing post in the starter set of six."
 pubDate: 2026-04-05
-author: "Dessy Rinink"
+author: "Dessy Rinika"
 category: "Transformation"
 featured: false
 ---

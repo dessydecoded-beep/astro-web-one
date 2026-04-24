@@ -1,6 +1,6 @@
 ---
-seoTitle: "Dessy Rinink | NLP Life Coach & Astrologer"
-seoDescription: "NLP-qualified life coaching, astrology, and transformational guidance with Dessy Rinink."
+seoTitle: "Dessy Rinika | NLP Life Coach & Astrologer"
+seoDescription: "NLP-qualified life coaching, astrology, and transformational guidance with Dessy Rinika."
 hero:
   eyebrow: "Your Next Chapter"
   titleLead: "Clarity, Alignment,"

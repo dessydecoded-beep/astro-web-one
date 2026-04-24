@@ -1,13 +1,13 @@
 ---
-seoTitle: "About Dessy Rinink"
-seoDescription: "Meet Dessy Rinink, an NLP-qualified life coach, astrologer, and transformational guide."
+seoTitle: "About Dessy Rinika"
+seoDescription: "Meet Dessy Rinika, an NLP-qualified life coach, astrologer, and transformational guide."
 hero:
   eyebrow: "About Dessy"
   heading: "Insightful guidance for real life change."
-  text: "Dessy Rinink is an NLP-qualified life coach, astrologer, and transformational practitioner who helps people understand themselves more deeply and move through life with greater clarity."
+  text: "Dessy Rinika is an NLP-qualified life coach, astrologer, and transformational practitioner who helps people understand themselves more deeply and move through life with greater clarity."
   experienceLabel: "1:1 transformational work"
   experienceText: "Coaching & astrology practice"
-  imageAlt: "Portrait representing Dessy Rinink"
+  imageAlt: "Portrait representing Dessy Rinika"
 philosophyHeading: "The Foundation of Her Work"
 philosophyText: "Three values that shape the way Dessy supports personal transformation."
 philosophy:

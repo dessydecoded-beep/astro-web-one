@@ -1,13 +1,13 @@
 export const siteConfig = {
-  brandName: 'Dessy Rinink',
-  footerBrandName: 'Dessy Rinink',
+  brandName: 'Dessy Rinika',
+  footerBrandName: 'Dessy Rinika',
   cta: {
     href: '/book-a-consultation',
     label: 'Book a Session',
   },
   contact: {
     address: 'Online sessions worldwide',
-    email: 'hello@dessyrinink.com',
+    email: 'hello@dessydecoded.com',
     hours: 'By appointment',
   },
   footerLinks: [

@@ -1,6 +1,6 @@
 ---
-seoTitle: "Services | Dessy Rinink"
-seoDescription: "Explore NLP life coaching, astrology sessions, and transformational mentoring with Dessy Rinink."
+seoTitle: "Services | Dessy Rinika"
+seoDescription: "Explore NLP life coaching, astrology sessions, and transformational mentoring with Dessy Rinika."
 hero:
   eyebrow: "Work With Dessy"
   heading: "Coaching, Astrology, and Inner Transformation"

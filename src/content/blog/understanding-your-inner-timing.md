@@ -2,7 +2,7 @@
 title: "Understanding Your Inner Timing"
 description: "Placeholder copy showing how blog metadata appears in cards and pages."
 pubDate: 2026-04-15
-author: "Dessy Rinink"
+author: "Dessy Rinika"
 category: "Astrology"
 featured: true
 ---

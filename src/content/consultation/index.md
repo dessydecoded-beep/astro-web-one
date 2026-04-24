@@ -1,6 +1,6 @@
 ---
-seoTitle: "Book a Session | Dessy Rinink"
-seoDescription: "Book a life coaching or astrology session with Dessy Rinink."
+seoTitle: "Book a Session | Dessy Rinika"
+seoDescription: "Book a life coaching or astrology session with Dessy Rinika."
 hero:
   heading: "Book a Session with Dessy"
   text: "Book a session with Dessy to explore the patterns, questions, and possibilities alive in your life right now."
@@ -14,7 +14,7 @@ contact:
       value: "Online sessions worldwide"
     - icon: "mail"
       label: "Inquiries"
-      value: "hello@dessyrinink.com"
+      value: "hello@dessydecoded.com"
     - icon: "schedule"
       label: "Hours"
       value: "By appointment"

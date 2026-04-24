@@ -2,7 +2,7 @@
 title: "Reframing Old Patterns"
 description: "A sample placeholder post using lorem ipsum body copy."
 pubDate: 2026-04-18
-author: "Dessy Rinink"
+author: "Dessy Rinika"
 category: "Coaching"
 featured: true
 ---

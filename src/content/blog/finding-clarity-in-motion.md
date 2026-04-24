@@ -2,7 +2,7 @@
 title: "Finding Clarity in Motion"
 description: "Sample article preview text for the new blog section."
 pubDate: 2026-04-21
-author: "Dessy Rinink"
+author: "Dessy Rinika"
 category: "Mindset"
 featured: true
 ---
