@@ -1,16 +1,19 @@
 ---
+import { getEntry } from 'astro:content';
 import ConsultationPage from '@dessy/dessyui/consultation-page';
 import WellnessFooter from '@dessy/dessyui/footer';
 import WellnessHeader from '@dessy/dessyui/site-header';
 import SiteShell from '../layouts/SiteShell.astro';
+
+const entry = await getEntry('consultation', 'index');
+
+if (!entry) {
+  throw new Error('Missing content entry: consultation/index');
+}
 ---
 
-<SiteShell
-  title="Book a Consultation | Serene Path Wellness"
-  description="Begin your personalized wellness journey with Serene Path through a consultation tailored to your goals."
->
+<SiteShell title={entry.data.seoTitle} description={entry.data.seoDescription}>
   <WellnessHeader active="/book-a-consultation" />
-  <ConsultationPage />
+  <ConsultationPage content={entry.data} />
   <WellnessFooter />
 </SiteShell>
-

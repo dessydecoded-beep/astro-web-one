@@ -10,5 +10,21 @@ export default defineConfig({
   integrations: [preact()],
   vite: {
     plugins: [tailwindcss()],
+    optimizeDeps: {
+      exclude: ['@dessy/dessyui', '@dessy/daisyui'],
+    },
+    ssr: {
+      noExternal: ['@dessy/dessyui', '@dessy/daisyui'],
+      optimizeDeps: {
+        exclude: [
+          '@astrojs/preact',
+          '@astrojs/preact/server.js',
+          '@dessy/dessyui',
+          '@dessy/daisyui',
+          'preact',
+          'preact/hooks',
+        ],
+      },
+    },
   },
 });

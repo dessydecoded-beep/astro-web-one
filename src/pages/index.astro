@@ -1,15 +1,23 @@
 ---
+import { getEntry, render } from 'astro:content';
 import HomePage from '@dessy/dessyui/home-page';
 import WellnessFooter from '@dessy/dessyui/footer';
 import WellnessHeader from '@dessy/dessyui/site-header';
 import SiteShell from '../layouts/SiteShell.astro';
+
+const entry = await getEntry('home', 'index');
+
+if (!entry) {
+  throw new Error('Missing content entry: home/index');
+}
+
+const { Content } = await render(entry);
 ---
 
-<SiteShell
-  title="Serene Path | Holistic Wellness Coaching"
-  description="Guided serenity through personalized yoga, coaching, and functional training for modern high-performers."
->
+<SiteShell title={entry.data.seoTitle} description={entry.data.seoDescription}>
   <WellnessHeader active="/" />
-  <HomePage />
+  <HomePage content={entry.data}>
+    <Content />
+  </HomePage>
   <WellnessFooter />
 </SiteShell>

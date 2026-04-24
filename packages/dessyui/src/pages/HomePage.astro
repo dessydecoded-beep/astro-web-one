@@ -1,4 +1,5 @@
 ---
+import type { CollectionEntry } from 'astro:content';
 import Button from '@dessy/daisyui/button';
 import Card from '@dessy/daisyui/card';
 import Section from '@dessy/daisyui/section';
@@ -8,60 +9,42 @@ import PillarCard from '../components/PillarCard.astro';
 import ServiceFeature from '../components/ServiceFeature.astro';
 import { images } from '../data';
 
-const pillars = [
-  {
-    accent: 'primary',
-    checks: ['Breathwork Integration', 'Posture Correction'],
-    icon: 'self_improvement',
-    text: 'Traditional Vinyasa and Yin practices tailored to increase mobility and release physical tension stored from high-stress environments.',
-    title: 'Yoga',
-  },
-  {
-    accent: 'secondary',
-    checks: ['Values Alignment', 'Stress Management'],
-    icon: 'psychology',
-    text: 'Performance-focused mindset coaching to bridge the gap between where you are and where your soul desires to be.',
-    title: 'Life Coaching',
-  },
-  {
-    accent: 'accent',
-    checks: ['Endurance Building', 'Recovery Protocols'],
-    icon: 'fitness_center',
-    text: 'Functional strength training designed to build a resilient physique that supports your active, modern lifestyle.',
-    title: 'Training',
-  },
-] as const;
+interface Props {
+  content: CollectionEntry<'home'>['data'];
+}
 
-const testimonials = [
-  ['Maya Rahal', 'Creative Director', 'Serene Path helped me reclaim my mornings. I no longer start my day with anxiety, but with grounded purpose and physical vitality.'],
-  ['David Chen', 'Tech Entrepreneur', 'The combination of physical training and mindset coaching is unlike anything I have tried. It is a holistic approach that actually sticks.'],
-];
+const { content } = Astro.props;
+
+const feature = {
+  ...content.feature,
+  image: images[content.feature.image as keyof typeof images],
+};
 ---
 
 <main>
   <Section class="overflow-hidden">
     <div class="grid items-center gap-12 lg:grid-cols-12">
       <div class="lg:col-span-6">
-        <Eyebrow>Find Your Equilibrium</Eyebrow>
+        <Eyebrow>{content.hero.eyebrow}</Eyebrow>
         <h1 class="mt-5 max-w-3xl font-serif text-5xl leading-[1.04] tracking-[-0.055em] text-balance md:text-7xl">
-          Modern Living, <span class="italic text-primary">Ancient Wisdom.</span>
+          {content.hero.titleLead} <span class="italic text-primary">{content.hero.titleAccent}</span>
         </h1>
         <p class="mt-7 max-w-xl text-lg leading-8 text-base-content/65">
-          Guided serenity for high-performance individuals. Transform your life through personalized yoga, coaching, and training rooted in mindful excellence.
+          {content.hero.text}
         </p>
         <div class="mt-9 flex flex-col gap-3 sm:flex-row">
-          <Button href="/book-a-consultation" size="lg">Start Your Journey</Button>
-          <Button href="/services-programs" variant="outline" size="lg">View Programs</Button>
+          <Button href={content.hero.primaryCtaHref} size="lg">{content.hero.primaryCtaLabel}</Button>
+          <Button href={content.hero.secondaryCtaHref} variant="outline" size="lg">{content.hero.secondaryCtaLabel}</Button>
         </div>
       </div>
       <div class="relative lg:col-span-6">
-        <MatFrame class="aspect-[4/5]" rotate="rotate-2" src={images.heroYoga} alt="Yoga practice in a tropical garden" />
+        <MatFrame class="aspect-[4/5]" rotate="rotate-2" src={images.heroYoga} alt={content.hero.imageAlt} />
         <Card class="absolute -bottom-8 left-0 max-w-[14rem] bg-base-100/95 md:-left-8">
           <div class="flex items-center gap-2 text-accent">
             <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">favorite</span>
-            <span class="text-[0.68rem] font-bold uppercase tracking-[0.16em]">Holistic Pulse</span>
+            <span class="text-[0.68rem] font-bold uppercase tracking-[0.16em]">{content.hero.cardLabel}</span>
           </div>
-          <p class="mt-3 text-sm italic text-base-content/65">The path to clarity begins with a single, intentional breath.</p>
+          <p class="mt-3 text-sm italic text-base-content/65">{content.hero.cardText}</p>
         </Card>
       </div>
     </div>
@@ -69,11 +52,11 @@ const testimonials = [
 
   <Section class="bg-base-200">
     <div class="mx-auto mb-12 max-w-2xl text-center">
-      <h2 class="font-serif text-4xl tracking-[-0.035em] md:text-5xl">The Three Pillars</h2>
-      <p class="mt-4 leading-7 text-base-content/65">Our holistic methodology addresses the body, mind, and spirit as an integrated system for peak performance.</p>
+      <h2 class="font-serif text-4xl tracking-[-0.035em] md:text-5xl">{content.pillarsHeading}</h2>
+      <p class="mt-4 leading-7 text-base-content/65">{content.pillarsText}</p>
     </div>
     <div class="grid gap-6 md:grid-cols-3">
-      {pillars.map((pillar, index) => (
+      {content.pillars.map((pillar, index) => (
         <div class={index === 1 ? 'md:translate-y-5' : ''}>
           <PillarCard {...pillar} />
         </div>
@@ -82,34 +65,27 @@ const testimonials = [
   </Section>
 
   <Section>
-    <ServiceFeature
-      eyebrow="Restorative Flow"
-      image={images.serviceYoga}
-      imageAlt="Serene yoga practice in a bright studio"
-      title="Holistic Yoga"
-      text="More than movement, our holistic approach integrates breathwork and meditative awareness into every asana for nervous system regulation."
-      tags={['Mobility', 'Breathwork', 'Somatic Rest']}
-    />
+    <ServiceFeature {...feature} />
   </Section>
 
   <Section class="bg-base-200">
     <div class="mb-10 grid gap-8 lg:grid-cols-2 lg:items-end">
       <div>
         <Eyebrow>Kind Words</Eyebrow>
-        <h2 class="mt-4 font-serif text-4xl tracking-[-0.035em] md:text-5xl">Voices of Transformation</h2>
+        <h2 class="mt-4 font-serif text-4xl tracking-[-0.035em] md:text-5xl">{content.testimonialsHeading}</h2>
       </div>
-      <p class="leading-8 text-base-content/65">Clients come to Serene Path when achievement no longer feels sustainable and leave with practices that restore clarity, resilience, and joy.</p>
+      <p class="leading-8 text-base-content/65">{content.testimonialsText}</p>
     </div>
     <div class="grid gap-6 md:grid-cols-2">
-      {testimonials.map(([name, role, quote]) => (
+      {content.testimonials.map((testimonial) => (
         <Card class="bg-base-100">
           <div class="mb-6 flex gap-1 text-accent">
             {Array.from({ length: 5 }).map(() => <span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 1;">star</span>)}
           </div>
-          <p class="text-lg italic leading-8 text-base-content/80">"{quote}"</p>
+          <p class="text-lg italic leading-8 text-base-content/80">"{testimonial.quote}"</p>
           <div class="mt-8">
-            <p class="font-bold">{name}</p>
-            <p class="text-sm text-base-content/55">{role}</p>
+            <p class="font-bold">{testimonial.name}</p>
+            <p class="text-sm text-base-content/55">{testimonial.role}</p>
           </div>
         </Card>
       ))}
@@ -121,11 +97,12 @@ const testimonials = [
       <div class="absolute -bottom-32 -right-24 h-80 w-80 rounded-full bg-white/10 blur-3xl"></div>
       <div class="absolute -left-24 -top-32 h-80 w-80 rounded-full bg-white/10 blur-3xl"></div>
       <div class="relative mx-auto max-w-3xl">
-        <h2 class="font-serif text-4xl tracking-[-0.035em] md:text-5xl">Are you ready to find your path?</h2>
-        <p class="mt-5 text-lg leading-8 text-primary-content/80">Book your complimentary discovery call today. Together, we will map your journey toward serene excellence.</p>
-        <Button href="/book-a-consultation" variant="secondary" size="lg" class="mt-9">Start Your Journey</Button>
+        <h2 class="font-serif text-4xl tracking-[-0.035em] md:text-5xl">{content.ctaHeading}</h2>
+        <div class="prose prose-invert mx-auto mt-5 max-w-2xl text-lg leading-8 text-primary-content/80">
+          <slot />
+        </div>
+        <Button href={content.ctaHref} variant="secondary" size="lg" class="mt-9">{content.ctaLabel}</Button>
       </div>
     </div>
   </Section>
 </main>
-

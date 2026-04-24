@@ -1,49 +1,28 @@
 ---
+import type { CollectionEntry } from 'astro:content';
 import Section from '@dessy/daisyui/section';
 import ServiceFeature from '../components/ServiceFeature.astro';
 import Eyebrow from '../components/Eyebrow.astro';
 import { images } from '../data';
 
-const services = [
-  {
-    eyebrow: 'Restorative Flow',
-    image: images.serviceYoga,
-    imageAlt: 'Serene yoga practice',
-    text: 'Integrate breathwork and meditative awareness into every asana. We focus on somatic healing and nervous system regulation to leave you profoundly centered.',
-    title: 'Holistic Yoga',
-    tags: ['Spinal Alignment', 'Pranayama', 'Mental Clarity'],
-  },
-  {
-    eyebrow: 'Mindset Shift',
-    image: images.coaching,
-    imageAlt: 'Empowerment coaching session',
-    reverse: true,
-    text: 'Transition from surviving to thriving with evidence-based behavioral science and ancient wisdom that dismantles limiting beliefs.',
-    title: 'Empowerment Coaching',
-    tone: 'accent',
-    stats: [
-      { value: '90%', label: 'Clarity Rating' },
-      { value: '1:1', label: 'Private Focus' },
-    ],
-  },
-  {
-    eyebrow: 'Physical Vitality',
-    image: images.training,
-    imageAlt: 'Functional training movement',
-    text: 'Build a body that moves with effortless grace and power through multi-planar movement, core stability, and resilient recovery.',
-    title: 'Functional Training',
-    tone: 'secondary',
-    tags: ['Core Stability', 'Mobility', 'Endurance'],
-  },
-] as const;
+interface Props {
+  content: CollectionEntry<'services'>['data'];
+}
+
+const { content } = Astro.props;
+
+const services = content.services.map((service) => ({
+  ...service,
+  image: images[service.image as keyof typeof images],
+}));
 ---
 
 <main>
   <Section class="text-center">
-    <Eyebrow>Curated Wellness</Eyebrow>
-    <h1 class="mx-auto mt-4 max-w-3xl font-serif text-5xl tracking-[-0.055em] text-balance md:text-7xl">Elevate Your Being</h1>
+    <Eyebrow>{content.hero.eyebrow}</Eyebrow>
+    <h1 class="mx-auto mt-4 max-w-3xl font-serif text-5xl tracking-[-0.055em] text-balance md:text-7xl">{content.hero.heading}</h1>
     <p class="mx-auto mt-6 max-w-3xl text-lg leading-8 text-base-content/65">
-      A harmonious blend of movement, mindset, and strength designed for the modern high-performer seeking deep restorative balance.
+      {content.hero.text}
     </p>
   </Section>
 
@@ -57,14 +36,18 @@ const services = [
 
   <Section>
     <div class="rounded-[2rem] border border-primary/10 bg-base-200 p-10 text-center organic-glow md:p-16">
-      <h2 class="font-serif text-4xl tracking-[-0.035em]">The Signature Path</h2>
-      <p class="mx-auto mt-5 max-w-xl leading-8 text-base-content/65">An 8-week intensive combining all three disciplines for a total transformation of mind, body, and spirit.</p>
+      <h2 class="font-serif text-4xl tracking-[-0.035em]">{content.signature.heading}</h2>
+      <div class="prose mx-auto mt-5 max-w-xl leading-8 text-base-content/65">
+        <slot />
+      </div>
       <div class="mt-7 inline-flex flex-wrap items-center justify-center gap-4 text-[0.72rem] font-bold uppercase tracking-[0.16em] text-primary">
-        <span>Enrollment Open</span>
-        <span class="h-1.5 w-1.5 rounded-full bg-accent"></span>
-        <span>Limited to 12 Guests</span>
+        {content.signature.meta.map((item, index) => (
+          <>
+            {index > 0 && <span class="h-1.5 w-1.5 rounded-full bg-accent"></span>}
+            <span>{item}</span>
+          </>
+        ))}
       </div>
     </div>
   </Section>
 </main>
-

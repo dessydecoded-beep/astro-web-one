@@ -1,4 +1,5 @@
 ---
+import type { CollectionEntry } from 'astro:content';
 import Button from '@dessy/daisyui/button';
 import Card from '@dessy/daisyui/card';
 import Section from '@dessy/daisyui/section';
@@ -6,53 +7,51 @@ import Eyebrow from '../components/Eyebrow.astro';
 import MatFrame from '../components/MatFrame.astro';
 import { images } from '../data';
 
-const philosophy = [
-  ['eco', 'Tactile Presence', 'Reconnecting with the physical world through sensory awareness and mindful movement. We move to feel, not just perform.', 'Grounded in the earth.'],
-  ['self_improvement', 'Quiet Performance', 'Achievement does not require burnout. Sustain high-level output through strategic rest and mental clarity.', 'Stillness is power.'],
-  ['water_drop', 'Fluid Adaptation', 'Wellness is not a rigid set of rules. It is a fluid response to changing seasons, demands, and personal growth.', 'Flow with intention.'],
-];
+interface Props {
+  content: CollectionEntry<'about'>['data'];
+}
 
-const credentials = ['RYT-500 Advanced Yoga', 'Holistic Health Coach', 'Breathwork Facilitator', 'NASM Personal Trainer'];
+const { content } = Astro.props;
 ---
 
 <main>
   <Section>
     <div class="grid items-center gap-12 md:grid-cols-2">
       <div>
-        <Eyebrow>The Story Behind the Serenity</Eyebrow>
-        <h1 class="mt-5 font-serif text-5xl leading-[1.08] tracking-[-0.055em] text-balance md:text-7xl">Guided by Nature, Rooted in Tradition.</h1>
+        <Eyebrow>{content.hero.eyebrow}</Eyebrow>
+        <h1 class="mt-5 font-serif text-5xl leading-[1.08] tracking-[-0.055em] text-balance md:text-7xl">{content.hero.heading}</h1>
         <p class="mt-6 text-lg leading-8 text-base-content/65">
-          I am Maya, a holistic wellness coach dedicated to bridging ancient Eastern wisdom and the demands of modern performance.
+          {content.hero.text}
         </p>
         <div class="mt-8 flex items-center gap-4">
           <div class="flex h-14 w-14 items-center justify-center rounded-full bg-secondary text-secondary-content">
             <span class="material-symbols-outlined">psychology</span>
           </div>
           <div>
-            <p class="font-bold">12+ Years Experience</p>
-            <p class="text-base-content/60">Global Wellness Practitioner</p>
+            <p class="font-bold">{content.hero.experienceLabel}</p>
+            <p class="text-base-content/60">{content.hero.experienceText}</p>
           </div>
         </div>
       </div>
       <div class="relative">
         <div class="absolute -inset-4 -rotate-3 rounded-[2rem] border border-primary/10"></div>
-        <MatFrame class="relative aspect-[4/5]" src={images.coach} alt="Maya wellness coach" />
+        <MatFrame class="relative aspect-[4/5]" src={images.coach} alt={content.hero.imageAlt} />
       </div>
     </div>
   </Section>
 
   <Section class="bg-base-200">
     <div class="mx-auto mb-12 max-w-2xl text-center">
-      <h2 class="font-serif text-4xl tracking-[-0.035em] md:text-5xl">A Philosophy of Balance</h2>
-      <p class="mt-4 text-base-content/65">Three pillars that define Maya's approach to high-performance living.</p>
+      <h2 class="font-serif text-4xl tracking-[-0.035em] md:text-5xl">{content.philosophyHeading}</h2>
+      <p class="mt-4 text-base-content/65">{content.philosophyText}</p>
     </div>
     <div class="grid gap-6 md:grid-cols-3">
-      {philosophy.map(([icon, title, text, quote], index) => (
+      {content.philosophy.map((item, index) => (
         <Card class={index === 1 ? 'bg-primary text-primary-content' : ''}>
-          <span class:list={['material-symbols-outlined mb-5 text-4xl', index === 1 ? 'text-primary-content' : 'text-primary']}>{icon}</span>
-          <h3 class="font-serif text-3xl">{title}</h3>
-          <p class:list={['mt-4 leading-7', index === 1 ? 'text-primary-content/85' : 'text-base-content/65']}>{text}</p>
-          <p class:list={['mt-8 border-t pt-8 italic', index === 1 ? 'border-white/20' : 'border-primary/10 text-primary']}>{quote}</p>
+          <span class:list={['material-symbols-outlined mb-5 text-4xl', index === 1 ? 'text-primary-content' : 'text-primary']}>{item.icon}</span>
+          <h3 class="font-serif text-3xl">{item.title}</h3>
+          <p class:list={['mt-4 leading-7', index === 1 ? 'text-primary-content/85' : 'text-base-content/65']}>{item.text}</p>
+          <p class:list={['mt-8 border-t pt-8 italic', index === 1 ? 'border-white/20' : 'border-primary/10 text-primary']}>{item.quote}</p>
         </Card>
       ))}
     </div>
@@ -61,16 +60,18 @@ const credentials = ['RYT-500 Advanced Yoga', 'Holistic Health Coach', 'Breathwo
   <Section>
     <div class="grid gap-10 md:grid-cols-3">
       <div>
-        <h2 class="font-serif text-4xl tracking-[-0.035em]">Expertise & Trust</h2>
-        <p class="mt-4 leading-7 text-base-content/65">Years of dedicated study and practice across three continents define this professional foundation.</p>
+        <h2 class="font-serif text-4xl tracking-[-0.035em]">{content.expertise.heading}</h2>
+        <div class="prose mt-4 leading-7 text-base-content/65">
+          <slot />
+        </div>
       </div>
       <div class="grid gap-6 md:col-span-2 sm:grid-cols-2">
-        {credentials.map((credential) => (
+        {content.expertise.credentials.map((credential) => (
           <div class="flex gap-4">
             <span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">verified</span>
             <div>
               <p class="font-bold">{credential}</p>
-              <p class="text-sm text-base-content/55">Certified wellness practice</p>
+              <p class="text-sm text-base-content/55">Professional practice</p>
             </div>
           </div>
         ))}
@@ -82,11 +83,11 @@ const credentials = ['RYT-500 Advanced Yoga', 'Holistic Health Coach', 'Breathwo
     <div class="relative overflow-hidden rounded-[2rem] bg-secondary p-10 text-center md:p-20">
       <span class="material-symbols-outlined absolute right-8 top-8 text-9xl text-secondary-content/10">spa</span>
       <div class="relative mx-auto max-w-2xl">
-        <h2 class="font-serif text-5xl tracking-[-0.055em] text-balance">Ready to walk the path together?</h2>
-        <p class="mt-5 text-lg leading-8 text-secondary-content/75">Whether you need personalized yoga or high-performance coaching, Maya is here to guide your journey.</p>
+        <h2 class="font-serif text-5xl tracking-[-0.055em] text-balance">{content.cta.heading}</h2>
+        <p class="mt-5 text-lg leading-8 text-secondary-content/75">{content.cta.text}</p>
         <div class="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
-          <Button href="/book-a-consultation">Start Your Journey</Button>
-          <Button href="/book-a-consultation" variant="outline">Send a Message</Button>
+          <Button href={content.cta.primaryHref}>{content.cta.primaryLabel}</Button>
+          <Button href={content.cta.secondaryHref} variant="outline">{content.cta.secondaryLabel}</Button>
         </div>
       </div>
     </div>

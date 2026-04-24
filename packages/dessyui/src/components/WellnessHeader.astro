@@ -1,6 +1,6 @@
 ---
 import Navbar from '@dessy/daisyui/navbar';
-import { navLinks } from '../data';
+import { siteConfig } from '../data';
 
 interface Props {
   active?: string;
@@ -9,5 +9,10 @@ interface Props {
 const { active = '/' } = Astro.props;
 ---
 
-<Navbar active={active} brand="Serene Path" ctaHref="/book-a-consultation" ctaLabel="Book Now" links={navLinks} />
-
+<Navbar
+  active={active}
+  brand={siteConfig.brandName}
+  ctaHref={siteConfig.cta.href}
+  ctaLabel={siteConfig.cta.label}
+  links={siteConfig.navLinks}
+/>

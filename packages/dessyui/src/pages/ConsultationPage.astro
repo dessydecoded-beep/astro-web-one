@@ -1,23 +1,24 @@
 ---
+import type { CollectionEntry } from 'astro:content';
 import Card from '@dessy/daisyui/card';
 import Section from '@dessy/daisyui/section';
 import BookingForm from '../components/BookingForm.astro';
 import { images } from '../data';
 
-const benefits = [
-  ['psychology', 'Expert Guidance', 'Over 15 years of international expertise in holistic wellness and personal growth.'],
-  ['self_improvement', 'Tailored Approach', 'Programs that align with your unique rhythm, goals, and current season of life.'],
-  ['verified', 'Tranquil Space', 'A sanctuary designed to help you decompress and find immediate clarity.'],
-];
+interface Props {
+  content: CollectionEntry<'consultation'>['data'];
+}
+
+const { content } = Astro.props;
 ---
 
 <main>
   <section class="relative flex min-h-[400px] items-center justify-center overflow-hidden text-center">
-    <img class="absolute inset-0 h-full w-full object-cover" src={images.stones} alt="River stones and a green leaf" />
+    <img class="absolute inset-0 h-full w-full object-cover" src={images.stones} alt={content.hero.imageAlt} />
     <div class="absolute inset-0 bg-base-100/65 backdrop-blur-[2px]"></div>
     <div class="relative z-10 mx-auto max-w-3xl px-5">
-      <h1 class="font-serif text-5xl tracking-[-0.055em] text-balance md:text-7xl">Begin Your Journey to Balance</h1>
-      <p class="mt-5 text-lg italic leading-8 text-base-content/65">Professional guidance tailored to your personal path of serenity.</p>
+      <h1 class="font-serif text-5xl tracking-[-0.055em] text-balance md:text-7xl">{content.hero.heading}</h1>
+      <p class="mt-5 text-lg italic leading-8 text-base-content/65">{content.hero.text}</p>
     </div>
   </section>
 
@@ -25,37 +26,43 @@ const benefits = [
     <div class="grid items-start gap-8 lg:grid-cols-12">
       <div class="space-y-8 lg:col-span-4">
         <Card class="bg-base-200">
-          <p class="text-[0.72rem] font-bold uppercase tracking-[0.16em] text-accent">Get In Touch</p>
-          <h2 class="mt-4 font-serif text-4xl tracking-[-0.035em]">Connect with us</h2>
+          <p class="text-[0.72rem] font-bold uppercase tracking-[0.16em] text-accent">{content.contact.eyebrow}</p>
+          <h2 class="mt-4 font-serif text-4xl tracking-[-0.035em]">{content.contact.heading}</h2>
           <div class="mt-8 space-y-6">
-            <div class="flex gap-4"><span class="material-symbols-outlined text-primary">location_on</span><p><strong>Our Studio</strong><br /><span class="text-base-content/60">128 Serenity Lane, Ojai, CA</span></p></div>
-            <div class="flex gap-4"><span class="material-symbols-outlined text-primary">mail</span><p><strong>Inquiries</strong><br /><span class="text-base-content/60">hello@serenepath.com</span></p></div>
-            <div class="flex gap-4"><span class="material-symbols-outlined text-primary">schedule</span><p><strong>Hours</strong><br /><span class="text-base-content/60">Mon-Fri 8:00am-6:00pm</span></p></div>
+            {content.contact.details.map((detail) => (
+              <div class="flex gap-4">
+                <span class="material-symbols-outlined text-primary">{detail.icon}</span>
+                <p><strong>{detail.label}</strong><br /><span class="text-base-content/60">{detail.value}</span></p>
+              </div>
+            ))}
           </div>
         </Card>
         <div class="relative h-[300px] overflow-hidden rounded-3xl border border-primary/10 organic-glow">
-          <img class="h-full w-full object-cover" src={images.studio} alt="Minimalist yoga studio interior" loading="lazy" />
+          <img class="h-full w-full object-cover" src={images.studio} alt={content.contact.studioImageAlt} loading="lazy" />
           <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-base-100/90 to-transparent p-8">
-            <p class="text-[0.72rem] font-bold uppercase tracking-[0.16em] text-primary">Visit Our Sanctuary</p>
+            <p class="text-[0.72rem] font-bold uppercase tracking-[0.16em] text-primary">{content.contact.studioLabel}</p>
           </div>
         </div>
       </div>
       <Card class="bg-base-200 lg:col-span-8">
-        <BookingForm />
+        <BookingForm
+          heading={content.formHeading}
+          text={content.formText}
+          inquiryTypes={content.inquiryTypes}
+        />
       </Card>
     </div>
   </Section>
 
   <Section class="bg-secondary/35">
     <div class="grid gap-6 text-center md:grid-cols-3">
-      {benefits.map(([icon, title, text]) => (
+      {content.benefits.map((benefit) => (
         <div class="p-8">
-          <span class="material-symbols-outlined mb-4 text-4xl text-accent">{icon}</span>
-          <h3 class="font-serif text-3xl">{title}</h3>
-          <p class="mt-3 leading-7 text-base-content/65">{text}</p>
+          <span class="material-symbols-outlined mb-4 text-4xl text-accent">{benefit.icon}</span>
+          <h3 class="font-serif text-3xl">{benefit.title}</h3>
+          <p class="mt-3 leading-7 text-base-content/65">{benefit.text}</p>
         </div>
       ))}
     </div>
   </Section>
 </main>
-
