@@ -1,9 +1,10 @@
 ---
-import { getCollection, getEntry, render } from 'astro:content';
+import { getEntry, render } from 'astro:content';
 import HomePage from '@dessy/dessyui/home-page';
 import WellnessFooter from '@dessy/dessyui/footer';
 import WellnessHeader from '@dessy/dessyui/site-header';
 import SiteShell from '../layouts/SiteShell.astro';
+import { getSortedBlogPosts } from '../lib/blog';
 
 const entry = await getEntry('home', 'index');
 
@@ -12,9 +13,7 @@ if (!entry) {
 }
 
 const { Content } = await render(entry);
-const posts = (await getCollection('blog'))
-  .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
-  .slice(0, 3);
+const posts = (await getSortedBlogPosts()).slice(0, 3);
 ---
 
 <SiteShell title={entry.data.seoTitle} description={entry.data.seoDescription}>

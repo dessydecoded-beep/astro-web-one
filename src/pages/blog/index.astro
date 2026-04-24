@@ -1,14 +1,12 @@
 ---
-import { getCollection } from 'astro:content';
 import Card from '@dessy/daisyui/card';
 import Section from '@dessy/daisyui/section';
 import WellnessFooter from '@dessy/dessyui/footer';
 import WellnessHeader from '@dessy/dessyui/site-header';
 import SiteShell from '../../layouts/SiteShell.astro';
+import { getSortedBlogPosts } from '../../lib/blog';
 
-const posts = (await getCollection('blog')).sort(
-  (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime(),
-);
+const posts = await getSortedBlogPosts();
 ---
 
 <SiteShell title="Blog | Dessy Rinika" description="Sample blog posts for the Dessy Rinika site.">
@@ -34,7 +32,11 @@ const posts = (await getCollection('blog')).sort(
             <h2 class="mt-4 font-serif text-3xl text-balance">{post.data.title}</h2>
             <p class="mt-4 leading-7 text-base-content/65">{post.data.description}</p>
             <p class="mt-6 text-sm text-base-content/55">By {post.data.author}</p>
-            <a class="mt-6 inline-flex text-sm font-semibold text-primary transition-colors hover:text-accent" href={`/blog/${post.id}/`}>
+            <a
+              aria-label={`Read post: ${post.data.title}`}
+              class="mt-6 inline-flex text-sm font-semibold text-primary transition-colors hover:text-accent"
+              href={`/blog/${post.id}/`}
+            >
               Read post
             </a>
           </Card>

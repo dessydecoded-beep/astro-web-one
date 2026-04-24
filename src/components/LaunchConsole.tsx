@@ -23,6 +23,8 @@ type HealthState =
   | { status: 'ready'; message: string }
   | { status: 'error'; message: string };
 
+type ModeKeyboardEvent = KeyboardEvent & { currentTarget: HTMLButtonElement };
+
 export default function LaunchConsole() {
   const [activeMode, setActiveMode] = useState(0);
   const [health, setHealth] = useState<HealthState>({
@@ -62,6 +64,36 @@ export default function LaunchConsole() {
   }, []);
 
   const selected = modes[activeMode];
+  const selectedModeId = `launch-console-mode-${activeMode}`;
+
+  const selectMode = (index: number) => {
+    setActiveMode(index);
+    window.requestAnimationFrame(() => {
+      document.getElementById(`launch-console-mode-${index}`)?.focus();
+    });
+  };
+
+  const handleModeKeyDown = (event: ModeKeyboardEvent, index: number) => {
+    if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') {
+      event.preventDefault();
+      selectMode((index - 1 + modes.length) % modes.length);
+    }
+
+    if (event.key === 'ArrowRight' || event.key === 'ArrowDown') {
+      event.preventDefault();
+      selectMode((index + 1) % modes.length);
+    }
+
+    if (event.key === 'Home') {
+      event.preventDefault();
+      selectMode(0);
+    }
+
+    if (event.key === 'End') {
+      event.preventDefault();
+      selectMode(modes.length - 1);
+    }
+  };
 
   return (
     <section className="card glass-grid border border-white/10 bg-base-200/70 shadow-2xl">
@@ -76,12 +108,24 @@ export default function LaunchConsole() {
           <div className="badge badge-accent badge-lg font-black">client:load</div>
         </div>
 
-        <div className="join join-vertical w-full overflow-hidden rounded-box border border-white/10 lg:join-horizontal">
+        <div
+          aria-label="Launch console modes"
+          className="join join-vertical w-full overflow-hidden rounded-box border border-white/10 lg:join-horizontal"
+          role="tablist"
+        >
           {modes.map((mode, index) => (
             <button
+              aria-controls="launch-console-panel"
+              aria-label={`Show ${mode.label} details`}
+              aria-selected={activeMode === index}
               type="button"
               className={`btn join-item min-h-16 flex-1 ${activeMode === index ? 'btn-accent' : 'btn-ghost'}`}
+              id={`launch-console-mode-${index}`}
+              key={mode.label}
               onClick={() => setActiveMode(index)}
+              onKeyDown={(event) => handleModeKeyDown(event, index)}
+              role="tab"
+              tabIndex={activeMode === index ? 0 : -1}
             >
               {mode.label}
             </button>
@@ -89,7 +133,12 @@ export default function LaunchConsole() {
         </div>
 
         <div className="grid gap-4 lg:grid-cols-[1fr_0.72fr]">
-          <article className="card border border-white/10 bg-base-100/70">
+          <article
+            aria-labelledby={selectedModeId}
+            className="card border border-white/10 bg-base-100/70"
+            id="launch-console-panel"
+            role="tabpanel"
+          >
             <div className="card-body">
               <div className="flex items-center justify-between gap-3">
                 <h3 className="card-title text-2xl">{selected.label}</h3>
